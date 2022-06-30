@@ -14,15 +14,22 @@
     }
   });
 
+  // Fixes for service mesh
+  const catalogueAddr = process.env.CATALOGUE_URL || util.format("http://cataloge%s", domain)
+  const cartsAddr = process.env.CARTS_URL || util.format("http://carts%s", domain)
+  const ordersAddr = process.env.ORDERS_URL || util.format("http://orders%s", domain)
+  const userAddr = process.env.USER_URL || util.format("http://user%s", domain)
+
+
   module.exports = {
-    catalogueUrl:  util.format("http://catalogue%s", domain),
-    tagsUrl:       util.format("http://catalogue%s/tags", domain),
-    cartsUrl:      util.format("http://carts%s/carts", domain),
-    ordersUrl:     util.format("http://orders%s", domain),
-    customersUrl:  util.format("http://user%s/customers", domain),
-    addressUrl:    util.format("http://user%s/addresses", domain),
-    cardsUrl:      util.format("http://user%s/cards", domain),
-    loginUrl:      util.format("http://user%s/login", domain),
-    registerUrl:   util.format("http://user%s/register", domain),
+    catalogueUrl:  catalogueAddr,
+    tagsUrl:       util.format("%s/tags", catalogueAddr),
+    cartsUrl:      util.format("%s/carts", cartsAddr),
+    ordersUrl:     util.format("%s", ordersAddr),
+    customersUrl:  util.format("%s/customers", userAddr),
+    addressUrl:    util.format("%s/addresses", userAddr),
+    cardsUrl:      util.format("%s/cards", userAddr),
+    loginUrl:      util.format("%s/login", userAddr),
+    registerUrl:   util.format("%s/register", userAddr),
   };
 }());
